@@ -13,6 +13,8 @@ public class TorpedoStore {
   private double FAILURE_RATE = 0.0; //NOSONAR
 
   private int torpedoCount = 0;
+  private Random generator = new Random(); //Random is now here so it is only created once per TorpedoStore instance, not every time fire() is called
+
 
   public TorpedoStore(int numberOfTorpedos){
     this.torpedoCount = numberOfTorpedos;
@@ -36,7 +38,7 @@ public class TorpedoStore {
     boolean success = false;
 
     // simulate random overheating of the launcher bay which prevents firing
-    java.util.Random generator = new java.util.Random();
+    
     double r = generator.nextDouble();
 
     if (r >= FAILURE_RATE) {
